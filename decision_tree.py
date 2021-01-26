@@ -11,3 +11,8 @@ def trainTestSplit(dataFrame, testSize):
     dataFrameTest = dataFrame.loc[testIndices]
     dataFrameTrain = dataFrame.drop(testIndices)
     return dataFrameTrain, dataFrameTest
+def checkPurity(data):
+    if len(numpy.unique(data[:, -1])) == 1:
+        return True
+    else:
+        return False
