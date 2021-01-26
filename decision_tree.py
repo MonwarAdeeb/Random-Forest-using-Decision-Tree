@@ -18,3 +18,9 @@ def checkPurity(data):
         return True
     else:
         return False
+
+
+def classifyData(data):
+    uniqueClasses, uniqueClassesCounts = numpy.unique(
+        data[:, -1], return_counts=True)
+    return uniqueClasses[uniqueClassesCounts.argmax()]
