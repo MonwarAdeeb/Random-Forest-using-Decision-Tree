@@ -46,3 +46,8 @@ def getPotentialSplits(data, randomAttributes):
                     potentialSplits[column].append(
                         (currentValue + previousValue) / 2)
     return potentialSplits
+
+
+def splitData(data, splitColumn, splitValue):
+    splitColumnValues = data[:, splitColumn]
+    return data[splitColumnValues <= splitValue], data[splitColumnValues > splitValue]
