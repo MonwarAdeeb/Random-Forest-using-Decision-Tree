@@ -24,3 +24,14 @@ def classifyData(data):
     uniqueClasses, uniqueClassesCounts = numpy.unique(
         data[:, -1], return_counts=True)
     return uniqueClasses[uniqueClassesCounts.argmax()]
+
+
+def getPotentialSplits(data, randomAttributes):
+    potentialSplits = {}
+    _, columns = data.shape
+    columnsIndices = list(range(columns - 1))
+    if randomAttributes != None and len(randomAttributes) <= len(columnsIndices):
+        columnsIndices = randomAttributes
+    for column in columnsIndices:
+        values = data[:, column]
+        uniqueValues = numpy.unique(values)
