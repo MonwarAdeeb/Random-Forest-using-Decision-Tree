@@ -57,3 +57,9 @@ def calculateEntropy(data):
     _, uniqueClassesCounts = numpy.unique(data[:, -1], return_counts=True)
     probabilities = uniqueClassesCounts / uniqueClassesCounts.sum()
     return sum(probabilities * -numpy.log2(probabilities))
+
+
+def calculateOverallEntropy(dataBelow, dataAbove):
+    pDataBelow = len(dataBelow) / (len(dataBelow) + len(dataAbove))
+    pDataAbove = len(dataAbove) / (len(dataBelow) + len(dataAbove))
+    return pDataBelow * calculateEntropy(dataBelow) + pDataAbove * calculateEntropy(dataAbove)
