@@ -51,3 +51,9 @@ def getPotentialSplits(data, randomAttributes):
 def splitData(data, splitColumn, splitValue):
     splitColumnValues = data[:, splitColumn]
     return data[splitColumnValues <= splitValue], data[splitColumnValues > splitValue]
+
+
+def calculateEntropy(data):
+    _, uniqueClassesCounts = numpy.unique(data[:, -1], return_counts=True)
+    probabilities = uniqueClassesCounts / uniqueClassesCounts.sum()
+    return sum(probabilities * -numpy.log2(probabilities))
