@@ -69,3 +69,13 @@ def determineBestSplit(data, potentialSplits, randomSplits=None):
     overallEntropy = 9999
     bestSplitColumn = 0
     bestSplitValue = 0
+    if randomSplits == None:
+        for splitColumn in potentialSplits:
+            for splitValue in potentialSplits[splitColumn]:
+                dataBelow, dataAbove = splitData(data, splitColumn, splitValue)
+                currentOverallEntropy = calculateOverallEntropy(
+                    dataBelow, dataAbove)
+                if currentOverallEntropy <= overallEntropy:
+                    overallEntropy = currentOverallEntropy
+                    bestSplitColumn = splitColumn
+                    bestSplitValue = splitValue
