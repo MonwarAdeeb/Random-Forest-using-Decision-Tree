@@ -63,3 +63,9 @@ def calculateOverallEntropy(dataBelow, dataAbove):
     pDataBelow = len(dataBelow) / (len(dataBelow) + len(dataAbove))
     pDataAbove = len(dataAbove) / (len(dataBelow) + len(dataAbove))
     return pDataBelow * calculateEntropy(dataBelow) + pDataAbove * calculateEntropy(dataAbove)
+
+
+def determineBestSplit(data, potentialSplits, randomSplits=None):
+    overallEntropy = 9999
+    bestSplitColumn = 0
+    bestSplitValue = 0
