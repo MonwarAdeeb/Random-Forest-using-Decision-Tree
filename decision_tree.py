@@ -105,3 +105,15 @@ def buildDecisionTree(dataFrame, currentDepth=0, minSampleSize=2, maxDepth=1000,
                 range(len(COLUMN_HEADERS) - 1)), k=randomAttributes)
         else:
             randomAttributes = None
+    else:
+        data = dataFrame
+    if checkPurity(data) or len(data) < minSampleSize or currentDepth == maxDepth:
+        return classifyData(data)
+    else:
+        currentDepth += 1
+        potentialSplits = getPotentialSplits(data, randomAttributes)
+        splitColumn, splitValue = determineBestSplit(
+            data, potentialSplits, randomSplits)
+        dataBelow, dataAbove = splitData(data, splitColumn, splitValue)
+        if len(dataBelow) == 0 or len(dataAbove) == 0:
+            return classifyData(data)
