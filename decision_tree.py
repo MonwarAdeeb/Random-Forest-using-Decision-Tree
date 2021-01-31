@@ -117,3 +117,17 @@ def buildDecisionTree(dataFrame, currentDepth=0, minSampleSize=2, maxDepth=1000,
         dataBelow, dataAbove = splitData(data, splitColumn, splitValue)
         if len(dataBelow) == 0 or len(dataAbove) == 0:
             return classifyData(data)
+        else:
+            question = str(COLUMN_HEADERS[splitColumn]
+                           ) + " <= " + str(splitValue)
+            decisionSubTree = {question: []}
+            yesAnswer = buildDecisionTree(
+                dataBelow, currentDepth, minSampleSize, maxDepth, randomAttributes, randomSplits)
+            noAnswer = buildDecisionTree(
+                dataAbove, currentDepth, minSampleSize, maxDepth, randomAttributes, randomSplits)
+            if yesAnswer == noAnswer:
+                decisionSubTree = yesAnswer
+            else:
+                decisionSubTree[question].append(yesAnswer)
+                decisionSubTree[question].append(noAnswer)
+            return decisionSubTree
