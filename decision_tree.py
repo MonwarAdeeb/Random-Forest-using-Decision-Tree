@@ -93,3 +93,15 @@ def determineBestSplit(data, potentialSplits, randomSplits=None):
                 bestSplitColumn = randomSplitColumn
                 bestSplitValue = randomSplitValue
     return bestSplitColumn, bestSplitValue
+
+
+def buildDecisionTree(dataFrame, currentDepth=0, minSampleSize=2, maxDepth=1000, randomAttributes=None, randomSplits=None):
+    if currentDepth == 0:
+        global COLUMN_HEADERS
+        COLUMN_HEADERS = dataFrame.columns
+        data = dataFrame.values
+        if randomAttributes != None and randomAttributes <= len(COLUMN_HEADERS) - 1:
+            randomAttributes = random.sample(population=list(
+                range(len(COLUMN_HEADERS) - 1)), k=randomAttributes)
+        else:
+            randomAttributes = None
