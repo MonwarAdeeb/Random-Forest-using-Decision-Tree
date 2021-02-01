@@ -143,3 +143,8 @@ def classifySample(sample, decisionTree):
     else:
         answer = decisionTree[question][1]
     return classifySample(sample, answer)
+
+
+def decisionTreePredictions(dataFrame, decisionTree):
+    predictions = dataFrame.apply(classifySample, axis=1, args=(decisionTree,))
+    return predictions
