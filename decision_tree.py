@@ -131,3 +131,15 @@ def buildDecisionTree(dataFrame, currentDepth=0, minSampleSize=2, maxDepth=1000,
                 decisionSubTree[question].append(yesAnswer)
                 decisionSubTree[question].append(noAnswer)
             return decisionSubTree
+
+
+def classifySample(sample, decisionTree):
+    if not isinstance(decisionTree, dict):
+        return decisionTree
+    question = list(decisionTree.keys())[0]
+    attribute, value = question.split(" <= ")
+    if sample[attribute] <= float(value):
+        answer = decisionTree[question][0]
+    else:
+        answer = decisionTree[question][1]
+    return classifySample(sample, answer)
