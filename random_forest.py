@@ -12,3 +12,9 @@ def trainTestSplit(dataFrame, testSize):
     dataFrameTest = dataFrame.loc[testIndices]
     dataFrameTrain = dataFrame.drop(testIndices)
     return dataFrameTrain, dataFrameTest
+
+
+def bootstrapSample(dataFrame, bootstrapSize):
+    randomIndices = numpy.random.randint(
+        low=0, high=len(dataFrame), size=bootstrapSize)
+    return dataFrame.iloc[randomIndices]
