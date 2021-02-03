@@ -38,3 +38,8 @@ def randomForestPredictions(dataFrame, randomForest):
             dataFrame, randomForest[i])
     predictions = pandas.DataFrame(predictions)
     return predictions.mode(axis=1)[0]
+
+
+def calculateAccuracy(predictedResults, category):
+    resultCorrect = predictedResults == category
+    return resultCorrect.mean()
