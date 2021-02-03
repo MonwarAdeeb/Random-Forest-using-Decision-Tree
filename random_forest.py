@@ -28,3 +28,13 @@ def createRandomForest(dataFrame, bootstrapSize, randomAttributes, randomSplits,
             bootstrappedDataFrame, maxDepth=treeMaxDepth, randomAttributes=randomAttributes, randomSplits=randomSplits)
         forest.append(decisionTree)
     return forest
+
+
+def randomForestPredictions(dataFrame, randomForest):
+    predictions = {}
+    for i in range(len(randomForest)):
+        column = "decision tree " + str(i)
+        predictions[column] = decisionTreePredictions(
+            dataFrame, randomForest[i])
+    predictions = pandas.DataFrame(predictions)
+    return predictions.mode(axis=1)[0]
