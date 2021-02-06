@@ -24,3 +24,10 @@ safetyMapping = {"low": 1, "med": 2, "high": 3}
 dataFrame["safety"] = dataFrame["safety"].map(safetyMapping)
 
 dataFrameTrain, dataFrameTest = trainTestSplit(dataFrame, testSize=0.3)
+
+print("Random Forest - Car Evaluation Dataset")
+print("  Maximum bootstrap size (n) is {}".format(dataFrameTrain.shape[0]))
+print("  Maximum random subspace size (d) is {}".format(
+    dataFrameTrain.shape[1] - 1))
+
+print("\n  Change n, keep other parameters")
