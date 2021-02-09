@@ -69,3 +69,22 @@ for i in range(1, dataFrameTrain.shape[1], 1):
     print("    accTest = {0:.2f}%, ".format(accuracyTest), end="")
     print("accTrain = {0:.2f}%, ".format(accuracyTrain), end="")
     print("buildTime = {0:.2f}s".format(buildingTime), end="\n")
+
+print("\n  Change s, keep other parameters")
+for i in range(2, 20 + 1, 2):
+    startTime = time.time()
+    randomForest = createRandomForest(
+        dataFrameTrain, bootstrapSize=200, randomAttributes=5, randomSplits=i, forestSize=10, treeMaxDepth=8)
+    buildingTime = time.time() - startTime
+    randomForestTestResults = randomForestPredictions(
+        dataFrameTest, randomForest)
+    accuracyTest = calculateAccuracy(
+        randomForestTestResults, dataFrameTest.iloc[:, -1]) * 100
+    randomForestTrainResults = randomForestPredictions(
+        dataFrameTrain, randomForest)
+    accuracyTrain = calculateAccuracy(
+        randomForestTrainResults, dataFrameTrain.iloc[:, -1]) * 100
+    print("  n = {}, d = {}, s = {}, k = {}, maxDepth = {}:".format(200, 5, i, 10, 8))
+    print("    accTest = {0:.2f}%, ".format(accuracyTest), end="")
+    print("accTrain = {0:.2f}%, ".format(accuracyTrain), end="")
+    print("buildTime = {0:.2f}s".format(buildingTime), end="\n")
