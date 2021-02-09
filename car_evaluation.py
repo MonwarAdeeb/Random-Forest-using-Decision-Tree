@@ -71,6 +71,7 @@ for i in range(1, dataFrameTrain.shape[1], 1):
     print("buildTime = {0:.2f}s".format(buildingTime), end="\n")
 
 print("\n  Change s, keep other parameters")
+
 for i in range(2, 20 + 1, 2):
     startTime = time.time()
     randomForest = createRandomForest(
@@ -88,3 +89,5 @@ for i in range(2, 20 + 1, 2):
     print("    accTest = {0:.2f}%, ".format(accuracyTest), end="")
     print("accTrain = {0:.2f}%, ".format(accuracyTrain), end="")
     print("buildTime = {0:.2f}s".format(buildingTime), end="\n")
+
+print("\n  Change k, keep other parameters")
