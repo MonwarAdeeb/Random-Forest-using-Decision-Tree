@@ -1,7 +1,7 @@
 import numpy
 import pandas
 import random
-from decisionTree import buildDecisionTree, decisionTreePredictions
+from decision_tree import buildDecisionTree, decisionTreePredictions
 
 
 def trainTestSplit(dataFrame, testSize):
