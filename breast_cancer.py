@@ -13,3 +13,23 @@ print("Random Forest - Breast Cancer Dataset")
 print("  Maximum bootstrap size (n) is {}".format(dataFrameTrain.shape[0]))
 print("  Maximum random subspace size (d) is {}".format(
     dataFrameTrain.shape[1] - 1))
+
+print("\n  Change n, keep other parameters")
+
+for i in range(10, dataFrameTrain.shape[0] + 1, 50):
+    startTime = time.time()
+    randomForest = createRandomForest(
+        dataFrameTrain, bootstrapSize=i, randomAttributes=10, randomSplits=50, forestSize=30, treeMaxDepth=3)
+    buildingTime = time.time() - startTime
+    randomForestTestResults = randomForestPredictions(
+        dataFrameTest, randomForest)
+    accuracyTest = calculateAccuracy(
+        randomForestTestResults, dataFrameTest.iloc[:, -1]) * 100
+    randomForestTrainResults = randomForestPredictions(
+        dataFrameTrain, randomForest)
+    accuracyTrain = calculateAccuracy(
+        randomForestTrainResults, dataFrameTrain.iloc[:, -1]) * 100
+    print("  n = {}, d = {}, s = {}, k = {}, maxDepth = {}:".format(i, 10, 50, 30, 3))
+    print("    accTest = {0:.2f}%, ".format(accuracyTest), end="")
+    print("accTrain = {0:.2f}%, ".format(accuracyTrain), end="")
+    print("buildTime = {0:.2f}s".format(buildingTime), end="\n")
