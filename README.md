@@ -8,7 +8,7 @@ The algorithm is not able to work with datasets containing categorical data nati
 
 ## 2. Repository Structure
 ```
-decision-tree-from-scratch/
+Random Forest using Decision Tree/
 ├── dataset_files/
 │   ├── breast_cancer.csv   # UCI Breast Cancer Wisconsin (Diagnostic) Dataset
 │   └── car_evaluation.csv  # UCI Car Evaluation Dataset
